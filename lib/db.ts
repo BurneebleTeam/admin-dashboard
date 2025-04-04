@@ -29,7 +29,12 @@ export const products = pgTable('products', {
 });
 
 export type SelectProduct = typeof products.$inferSelect;
+
+// Create a schema for inserting products
 export const insertProductSchema = createInsertSchema(products);
+
+// Create a type for inserting products without ID
+export type InsertProductWithoutId = Omit<typeof products.$inferInsert, 'id'>;
 
 export async function getProducts(
   search: string,
