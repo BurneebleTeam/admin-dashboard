@@ -5,7 +5,6 @@ import {
   Package,
   Package2,
   PanelLeft,
-  Settings,
   ShoppingCart,
   Users2
 } from 'lucide-react';
@@ -20,17 +19,14 @@ import {
 } from '@/components/ui/breadcrumb';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger
-} from '@/components/ui/tooltip';
 import { Analytics } from '@vercel/analytics/react';
 import { User } from './user';
 import { VercelLogo } from '@/components/icons';
 import Providers from './providers';
 import { NavItem } from './nav-item';
 import { SearchInput } from './search';
+import { SettingsDialog } from './settings-dialog';
+import { MobileSettings } from './mobile-settings';
 
 export default function DashboardLayout({
   children
@@ -91,18 +87,7 @@ function DesktopNav() {
         </NavItem>
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link
-              href="#"
-              className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-            >
-              <Settings className="h-5 w-5" />
-              <span className="sr-only">Settings</span>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent side="right">Settings</TooltipContent>
-        </Tooltip>
+        <SettingsDialog />
       </nav>
     </aside>
   );
@@ -154,13 +139,7 @@ function MobileNav() {
             <Users2 className="h-5 w-5" />
             Customers
           </Link>
-          <Link
-            href="#"
-            className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
-          >
-            <LineChart className="h-5 w-5" />
-            Settings
-          </Link>
+          <MobileSettings />
         </nav>
       </SheetContent>
     </Sheet>
